@@ -63,15 +63,15 @@ public class TestLogin {
 	}
 	
 	public static void main(String[] args) {
-		Authenticator authenticator = new Authenticator("https://<company_site>.sharepoint.com/_forms/default.aspx");
+		Authenticator authenticator = new Authenticator("https://<companysite>.sharepoint.com/_forms/default.aspx");
 		authenticator.setDebug(false);
 		authenticator.setWindowsIntegratedAuthentication(false);
-		if ( !authenticator.authenticate("<username>", "<password>")) {
+		if ( !authenticator.authenticate("firstname.lastname@company.com", "<password>")) {
 			System.out.println(authenticator.getError());
 		} else {
 			System.out.println(authenticator.getCookiesAsString());
 			System.out.println( 
-					fetchJson("https://<company_site>.sharepoint.com/<sharepoint_site>/_api/Web/Lists/GetByTitle('<list name>')/items", 
+					fetchJson("https://<companysite>.sharepoint.com/sites/pwa/_api/ProjectData/Timesheets?$metadata&$format=json", 
 							authenticator.getCookiesAsString()
 					)
 			);

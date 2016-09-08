@@ -85,7 +85,7 @@ public class Authenticator {
 			connection.setRequestProperty("Accept-Language", "en-US,en;q=0.8");
 			connection.setRequestProperty("Connection", "keep-alive");
 			if ( getCookie().size() > 0 ) {
-				connection.setRequestProperty("Cookie:", getCookiesAsString());
+				connection.setRequestProperty("Cookie", getCookiesAsString());
 			}
 			if (getDebug()) {
 				System.out.println("Method:" + method);
@@ -270,7 +270,7 @@ public class Authenticator {
 		if (!getError().equals("")) { return false; }
 		
 		if (getResponseHTML().indexOf("name=\"t\"") != -1 ) {
-			// Post SAML Response to Brambles MS handler
+			// Post SAML Response to STS MS handler
 			postSAMLResponse(findFormAction());
 		} else {
 			setError("Error: SAML response token not found!");
